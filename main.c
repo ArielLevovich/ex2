@@ -4,7 +4,7 @@
 int main() {
     char command;
     int **matrix = NULL;
-    int n = 0;
+    int n = 10;
 
     while (1) {
         printf("Enter command (A, B, C, D): ");
@@ -13,7 +13,7 @@ int main() {
         switch (command) {
             case 'A':
                 if (matrix != NULL && n > 0) {
-                    freeMatrixMemory(&matrix, &n);                    
+                    freeMatrixMemory(&matrix, n);                    
                 }
                 inputMatrix(&matrix, &n);                
                 break;

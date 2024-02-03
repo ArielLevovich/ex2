@@ -80,11 +80,7 @@ void selectItems(float weights[], float values[], char *strings[], int numString
 
 // inputs a matrix from the stdin.
 // the allocated matrix with size n*n is returned by reference
-void inputMatrix(int ***matrix, int *n) {    
-    printf("Enter the size of the matrix n: ");
-    scanf("%d", n);
-    int size = *n;
-
+void inputMatrix(int ***matrix, int size) {        
     if (size > 0) {
         // Allocate memory for the output matrix
         *matrix = (int **)malloc(size * sizeof(int *)); // second *
@@ -138,7 +134,7 @@ void displayIfPathExistsInternal(int **matrix, int n, int i, int j) {
     }
 
     // Free the allocated matrix.
-    freeMatrixMemory(&clone, &n);
+    freeMatrixMemory(&clone, n);
 }
 
 // prints to the stdout the shortest path if exists, and -1 otherwise.
@@ -152,7 +148,7 @@ void displayTheShortestPathInternal(int **matrix, int n, int i, int j) {
     }
 
     // Free the allocated matrix.
-    freeMatrixMemory(&clone, &n);
+    freeMatrixMemory(&clone, n);
 }
 
 // Function to swap zeros with INT_MAX except where i == j
@@ -205,13 +201,12 @@ int** cloneMatrix(int **matrix, int n) {
     return clone;
 }
 
-void freeMatrixMemory(int ***matrix, int *n) {
+void freeMatrixMemory(int ***matrix, int n) {
     // Free the allocated memory
-    for (int i = 0; i < *n; i++) {
+    for (int i = 0; i < n; i++) {
         free((*matrix)[i]);
     }
     free(*matrix);
     // mark parameters to contain initial values.
     *matrix = NULL;
-    *n = 0;
 }
