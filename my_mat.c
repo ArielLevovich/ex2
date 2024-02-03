@@ -91,7 +91,7 @@ void inputMatrix(int ***matrix, int size) {
         }       
 
         // Read matrix values from stdin
-        printf("Enter the matrix values (%d x %d):\n", size, size);
+        // printf("Enter the matrix values (%d x %d):\n", size, size);
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 scanf("%d", &mtrx[i][j]);
@@ -107,7 +107,7 @@ void inputMatrix(int ***matrix, int size) {
 // prints to the stdout "True" if the path (i->j) exists, and "False" otherwise.
 void displayIfPathExists(int **matrix, int n) {
     int i, j;
-    printf("Enter i and j separated by whitespace: ");
+    // printf("Enter i and j separated by whitespace: ");
     scanf("%d %d", &i, &j);
 
     displayIfPathExistsInternal(matrix, n, i, j);
@@ -117,7 +117,7 @@ void displayIfPathExists(int **matrix, int n) {
 // prints to the stdout the shortest path (i->j) if exists, and -1 otherwise.
 void displayTheShortestPath(int **matrix, int n) {
     int i, j;
-    printf("Enter i and j separated by whitespace: ");
+    // printf("Enter i and j separated by whitespace: ");
     scanf("%d %d", &i, &j);
 
     displayTheShortestPathInternal(matrix, n, i, j);
@@ -140,7 +140,7 @@ void displayIfPathExistsInternal(int **matrix, int n, int i, int j) {
 // prints to the stdout the shortest path if exists, and -1 otherwise.
 void displayTheShortestPathInternal(int **matrix, int n, int i, int j) {
     int **clone = floydWarshall(matrix, n);
-    if (clone[i][j] != INT_MAX) {
+    if (clone[i][j] != INT_MAX && i != j) {
         printf("%d\n", clone[i][j]);
     }
     else {
