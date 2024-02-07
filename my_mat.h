@@ -1,6 +1,10 @@
 #ifndef MY_MAT
 #define MY_MAT
 
+#define SIZE_ITEMS 5 
+#define TOTAL_WEIGHT 20
+
+int selectItems(int weights[], int values[] , int selected_bool[]);
 // gets a matrix input from the stdin.
 // the allocated matrix with size n*n is returned by reference
 void inputMatrix(int ***matrix, int n); 

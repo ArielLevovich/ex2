@@ -31,7 +31,7 @@ int main() {
                     printf("Matrix not initialized.\n");
                 }
                 break;
-            case 'D':
+            case 'D' :
                 // printf("Exiting...\n");
                 freeMatrixMemory(&matrix, n);
                 return 0;

@@ -4,79 +4,49 @@
 #include <limits.h> // For INT_MAX
 #include "my_mat.h"
 
-// #define SIZE 10 // Define the size of the matrix
-
 //question 2
 
-/*
-
-void findSumsRecursive(int arr[], int n, int target, int start, int currentSum, bool *found, int currentElements[], int currentCount) {
-    // If the current sum is equal to target, display the elements
-    if (currentSum == target) {
-        printf("Sum found with elements: ");
-        for (int i = 0; i < currentCount; i++) {
-            printf("%d ", currentElements[i]);
-        }
-        printf("\n");
-        *found = true;
-        return;
-    }
-
-    // If we reached the end of the array, return
-    if (start == n) {
-        return;
-    }
-
-    // Include the current element
-    currentElements[currentCount] = arr[start];
-    findSumsRecursive(arr, n, target, start + 1, currentSum + arr[start], found, currentElements, currentCount + 1);
-
-    // Exclude the current element
-    findSumsRecursive(arr, n, target, start + 1, currentSum, found, currentElements, currentCount);
-}
-
-
-
-void selectItems(float weights[], float values[], char *strings[], int numStrings)
+int selectItems(int weights[], int values[] , int selected_bool[])
 {
-    int c = 20;
-    *strings = NULL;
-    if (numStrings != 5) {
-        printf("The number of items must be 5\n");
-        return;
-    }
-    if(sizeof(weights)/sizeof(weights[0]) != 5 || sizeof(values)/sizeof(values[0]) != 5){
-        printf("your array is not 5*5\n");
-        return;
-    }
-
-    int rows = numStrings + 1;
-    int table[rows][c + 1];
-    int keep[rows][c + 1];
-    int table[rows][c + 1];
+    int rows = SIZE_ITEMS + 1;
+    int c = TOTAL_WEIGHT +1;
+    int table[rows][c];
 
     for(int i=0;i<rows;i++){
         for(int j=0;j<c+1;j++){
             table[i][j] = 0;
-            keep[i][j] = 0;
         }
     }
 
-    for(int row=1;row++;row<rows){
-        for(int col=1;col++;col<c+1){
+    for(int row=1;row<rows;row++){
+        for(int col=1;col<c+1;col++){
             if (col >= weights[row]) {
                 int diff = col-weights[row];
-                table[row][col] = max(table[row-1][col], table[row-1][diff]);
+                table[row][col] = fmax(table[row-1][col], table[row-1][diff]);
             }
             else{
-                table[row][col] = max(table[row-1][col], 0);
+                table[row][col] = fmax(table[row-1][col], 0);
             }
         }
     }
-
     
+    int a = SIZE_ITEMS;
+    int b = TOTAL_WEIGHT;
+    int k = SIZE_ITEMS;
+    while(k>=0){
+        if(table[a][b] == table[a-1][b]){
+           selected_bool[k] = 0;
+           a = a-1;
+        }else if(table[a][b] != table[a-1][b]){
+           selected_bool[k] = 0;
+           a = a-1;
+           b = b - weights[k];
+        }
+        --k;
+    }
+    return table[SIZE_ITEMS][TOTAL_WEIGHT];
 }
-*/
+
 
 // inputs a matrix from the stdin.
 // the allocated matrix with size n*n is returned by reference
