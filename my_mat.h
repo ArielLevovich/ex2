@@ -4,6 +4,9 @@
 #define SIZE_ITEMS 5 
 #define TOTAL_WEIGHT 20
 
+//helper function 
+int max(int a ,int b);
+
 int selectItems(int weights[], int values[] , int selected_bool[]);
 // gets a matrix input from the stdin.
 // the allocated matrix with size n*n is returned by reference
@@ -20,10 +23,11 @@ void displayTheShortestPath(int **matrix, int n);
 // free the allocated matrix memory
 void freeMatrixMemory(int ***matrix, int n);
 
-// helper functions - should not be called outside "my_mat.c"
+// helper functions 
 void displayIfPathExistsInternal(int **matrix, int n, int i, int j);
 void displayTheShortestPathInternal(int **matrix, int n, int i, int j);
 void replaceZerosWithIntMax(int **matrix, int n);
 int** floydWarshall(int **matrix, int n);
 int** cloneMatrix(int **matrix, int n);
+
 #endif

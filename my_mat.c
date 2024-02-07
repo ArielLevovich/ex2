@@ -6,6 +6,14 @@
 
 //question 2
 
+//helper function
+int max(int a,int b){
+    if(a<b){
+        return a;
+    }
+    return b;
+}
+
 int selectItems(int weights[], int values[] , int selected_bool[])
 {
     int rows = SIZE_ITEMS + 1;
@@ -22,10 +30,10 @@ int selectItems(int weights[], int values[] , int selected_bool[])
         for(int col=1;col<c+1;col++){
             if (col >= weights[row]) {
                 int diff = col-weights[row];
-                table[row][col] = fmax(table[row-1][col], table[row-1][diff]);
+                table[row][col] = max(table[row-1][col], table[row-1][diff]);
             }
             else{
-                table[row][col] = fmax(table[row-1][col], 0);
+                table[row][col] = max(table[row-1][col], 0);
             }
         }
     }
