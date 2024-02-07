@@ -19,7 +19,7 @@ int main(){
     printf("\nSelected items: ");
     for(int j = 0; j < SIZE_ITEMS; j++) {
         if(selected_bool[j] == 1){
-            printf("%d ", values[j]);
+            printf("%c ", items[j]);
         }
     }
 

@@ -6,12 +6,9 @@
 
 //question 2
 
-//helper function
+//helper function for selectItems
 int max(int a,int b){
-    if(a<b){
-        return a;
-    }
-    return b;
+    return (b > a) ? b : a;
 }
 
 int selectItems(int weights[], int values[] , int selected_bool[])
@@ -26,35 +23,33 @@ int selectItems(int weights[], int values[] , int selected_bool[])
         }
     }
 
-    for(int row=1;row<rows;row++){
-        for(int col=1;col<c+1;col++){
-            if (col >= weights[row]) {
-                int diff = col-weights[row];
-                table[row][col] = max(table[row-1][col], table[row-1][diff]);
-            }
-            else{
-                table[row][col] = max(table[row-1][col], 0);
+    // Dynamic programming to fill the table
+    for (int row = 1; row < rows; row++) {
+        for (int col = 1; col < c; col++) {
+            if (weights[row-1] <= col) {
+                table[row][col] = max(values[row-1] + table[row-1][col-weights[row-1]], table[row-1][col]);
+            } else {
+                table[row][col] = table[row-1][col];
             }
         }
     }
-    
-    int a = SIZE_ITEMS;
-    int b = TOTAL_WEIGHT;
-    int k = SIZE_ITEMS;
-    while(k>=0){
-        if(table[a][b] == table[a-1][b]){
-           selected_bool[k] = 0;
-           a = a-1;
-        }else if(table[a][b] != table[a-1][b]){
-           selected_bool[k] = 0;
-           a = a-1;
-           b = b - weights[k];
+
+    // Backtracking to determine which items to select
+    int col = TOTAL_WEIGHT;
+    for (int row = SIZE_ITEMS; row > 0; row--) {
+        if (table[row][col] != table[row-1][col]) {
+            selected_bool[row-1] = 1; // Item at index row-1 is included
+            col -= weights[row-1]; // Reduce the remaining weight
+        } else {
+            selected_bool[row-1] = 0; // Item at index row-1 is not included
         }
-        --k;
+
+
     }
     return table[SIZE_ITEMS][TOTAL_WEIGHT];
 }
 
+//question 1
 
 // inputs a matrix from the stdin.
 // the allocated matrix with size n*n is returned by reference
