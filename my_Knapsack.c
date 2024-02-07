@@ -12,7 +12,7 @@ int main(){
     int selected_bool[SIZE_ITEMS] = {0, 0, 0, 0, 0};
 
     for(int i = 0; i < SIZE_ITEMS; i++) {
-        scanf("%c %d %d", &items[i], &values[i], &weights[i]);
+        scanf(" %c %d %d", &items[i], &values[i], &weights[i]);        
     }
 
     printf("Maximum profit: %d", selectItems(weights, values, selected_bool));
