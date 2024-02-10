@@ -8,8 +8,10 @@ int main() {
 
     while (1) {
         // printf("Enter command (A, B, C, D): ");
-        scanf(" %c", &command); // Note the space before %c to consume any newline characters left in the input buffer
-
+        int retValue = scanf(" %c", &command); // Note the space before %c to consume any newline characters left in the input buffer
+        if (retValue == EOF) {
+            return 0;
+        }
         switch (command) {
             case 'A':
                 if (matrix != NULL && n > 0) {
@@ -35,7 +37,7 @@ int main() {
                 // printf("Exiting...\n");
                 freeMatrixMemory(&matrix, n);
                 return 0;
-            default:
+            default:                
                 printf("Invalid command.\n");
         }
     }
